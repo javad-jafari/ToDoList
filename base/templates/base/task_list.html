@@ -13,38 +13,7 @@
 {% block content%}
 
 
-<ul class="nav justify-content-end alert alert-success">
-
-
-{% if request.user.is_authenticated %}
-    <li class="nav-item">
-        <a class="nav-link active" href="#">{{request.user}}</a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-    </li>
-
-{% else %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
-    </li>
-{% endif %}
-
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% include 'base/nav.html' %}
 
 
 <div class="">
@@ -66,7 +35,7 @@
 <div class="container col-2" dir='rtl'>
 <form method="get">
     <div class="input-group mb-3 mt-5 ">
-    <input type="search" class="form-control" placeholder="Recipient's username" name="search-area" value="{{search_input}}" aria-describedby="button-addon2">
+    <input type="search" class="form-control" placeholder="search task" name="search-area" value="{{search_input}}" aria-describedby="button-addon2">
     <button class="btn btn-outline-danger" type="submit" id="button-addon2">search</button>
     </div>
 </form>
@@ -88,9 +57,9 @@
     <tr>
         <td><a href="{% url 'taskdetail' task.id %}">{{task.title}}</a></td>
         {% if task.complete %}
-        <td><a href="{% url 'taskdetail' task.id %}"> <i class="fa fa-check text-success"></i></a></td>
+        <td><i class="fa fa-check text-success"></i></td>
         {% else %}
-        <td><a href="{% url 'taskdetail' task.id %}"> <i class="fa fa-close text-danger"></i></a></td>
+        <td><i class="fa fa-close text-danger"></i></td>
         {% endif %}
         <td><a href="{% url 'task-update' task.id %}"> edit</a></td>
         <td><a href="{% url 'task-delete' task.id %}"> delete</a></td>

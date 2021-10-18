@@ -2,20 +2,71 @@
 {% load crispy_forms_tags %}
 
 
+{% block css%}
+<style>
+</style>
+{% endblock  %}
+
 {% block content%}
-    <div class = "row justify-content-center">
+
+{% if form.non_field_errors %}
+    <div class = "row justify-content-center alert alert-danger ">
+        <div class="col-auto">
+            <small class="alert">{{form.non_field_errors}}</small>
+        </div>
+    </div>
+{% endif %}
+
+<div class = "row justify-content-center">
     <div class="col-auto">
-<h1 class="alert alert-success mt-5 mb-5">Login</h1>
+        <h1 class="alert alert-success mt-5 mb-5">Login</h1>
 
 
-<form action="" method="post" class="uniForm alert alert-success">
-    {%csrf_token%}  
-    {{form.as_p}}
-    <input type="submit" value="login">
-</form>
 
 
-<p>Dont have an account ? <a href="{% url 'register' %}">Register</a></p>
+            <form action="" method="post" class="uniForm alert alert-success p-5">
+                {%csrf_token%}  
+                {% for field in form %}
+
+                <div>
+                    <div>{{ field.label_tag  }}</div>
+                    <div>{{ field }}</div>
+                    <div><small class="text-secondary">{{ field.help_text }}</small></div>
+                    <div><small class="text-danger">{{ field.errors }}</small></div>
+
+                </div>
+
+                {% endfor %}
+                <input type="submit" value="login" class="alert mt-5">
+            </form>
+
+
+            <p>Dont have an account ? <a href="{% url 'register' %}">Register</a></p>
+    </div>
 </div>
-</div>
+
+
+
+
+                       
+
+
+
 {% endblock %}
+
+
+{% block JavaScript %}
+
+<script>
+var closebtns = document.getElementsByClassName("close");
+var i;
+
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    this.parentElement.style.display = 'none';
+  });
+}
+
+</script>
+
+{% endblock  %}

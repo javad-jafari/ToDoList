@@ -5,8 +5,6 @@
 {% block content%}
 
 
-
-
 <div class = "row justify-content-center">
 <div class="col-auto">
 
@@ -15,17 +13,14 @@
     <form action="" method="post" class="uniForm alert alert-success">
         {%csrf_token%}
 
-{% for field in form %}
-    <div>
-        <div>{{ field.label_tag }}<div>
-        <div>{{ field}}<div>
-        <div><small class="text-secondary">{{ field.help_text }}</small><div>
-        <div><small class="text-danger">{{ field.errors}}</small><div>
-
-
-
-    </div>
-{% endfor %}
+            {% for field in form %}
+                <div>
+                    <div>{{ field.label_tag }}<div>
+                    <div>{{ field}}<div>
+                    <div><small class="text-secondary">{{ field.help_text }}</small><div>
+                    <div><small class="text-danger">{{ field.errors}}</small><div>
+                </div>
+            {% endfor %}
 
 
     

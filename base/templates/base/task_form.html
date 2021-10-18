@@ -3,11 +3,15 @@
 
 
 {% block content%}
-<div class="alert alert-success">
-<i class="fa fa-window-close text-danger"><a href="{% url 'tasks' %}">back to tasks</a></i>
 
-<h1 class="container">Task Form: </h1>
+{% include 'base/nav.html' %}
+
+<div class="alert alert-info m-5">
+<a href="{% url 'tasks' %}">back to tasks</a>
+<i class="fa fa-arrow-circle-left text-dark" aria-hidden="true"></i>
 </div>
+<h1 class="container">Task Form: </h1>
+
 
 
 <form method="post" action="" class="uniForm">

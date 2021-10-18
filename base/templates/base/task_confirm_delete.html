@@ -1,10 +1,30 @@
-<h1>Taks Delete</h1>
+{% extends 'base/main.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content%}
+
+{% include 'base/nav.html' %}
+
+
+
+<div class = "row justify-content-center mt-5">
+<div class="col-auto">
+
+<h1>Delete {{object}} !?</h1>
+
+<div class="alert alert-info">
 <a href="{% url 'tasks' %}">back to tasks</a>
+</div>
 
 <form method="post" action="">
     {%csrf_token%}
 
+    <div class="alert alert-warning">
     <p>Are you sure to delete {{object}}?</p>
-
-    <input type="submit" value="delete">
+    </div>
+    <input type="submit" value="delete" class="alert alert-danger">
 </form>
+</div>
+</div>
+{% endblock %}

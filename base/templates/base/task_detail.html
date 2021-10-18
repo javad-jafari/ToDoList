@@ -1,1 +1,39 @@
-<h1>Task : {{object}}</h1>
+{% extends 'base/main.html' %}
+
+
+{% block css %}
+
+<style>
+</style>
+
+{% endblock %}
+
+
+
+{% block content%}
+
+
+{% include 'base/nav.html' %}
+
+<div class="alert alert-info m-5">
+<a href="{% url 'tasks' %}">back to tasks</a>
+<i class="fa fa-arrow-circle-left text-dark" aria-hidden="true"></i>
+
+</div>
+
+<div class = "row justify-content-center border m-5" style="background-color: rgb(255, 249, 214);">
+    <div class="col-auto">
+        <h1 class="mt-5 mb-5">Task : {{object.title}}
+        {% if object.complete %}
+        <i class="fa fa-check text-success"></i>
+        {% else %}
+        <i class="fa fa-close text-danger"></i>
+        {% endif %}
+        </h1>
+
+        <h2 class="mt-5 mb-5">{{object.description}}</h2>
+        <h2 class="mt-5 mb-5">{{object.created}}</h2>
+    </div>
+</div>
+
+{% endblock %}
