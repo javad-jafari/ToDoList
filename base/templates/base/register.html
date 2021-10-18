@@ -1,0 +1,43 @@
+{% extends 'base/main.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content%}
+
+
+
+
+<div class = "row justify-content-center">
+<div class="col-auto">
+
+    <h1 class="alert alert-success mt-5 mb-5">Register</h1>
+
+    <form action="" method="post" class="uniForm alert alert-success">
+        {%csrf_token%}
+
+{% for field in form %}
+    <div>
+        <div>{{ field.label_tag }}<div>
+        <div>{{ field}}<div>
+        <div><small class="text-secondary">{{ field.help_text }}</small><div>
+        <div><small class="text-danger">{{ field.errors}}</small><div>
+
+
+
+    </div>
+{% endfor %}
+
+
+    
+        <input type="submit" value="Register" class="alert mt-5">
+    </form>
+</div>
+</div>
+
+<p>Do yoy have an account ? <a href="{% url 'login' %}">Login</a></p>
+
+
+
+
+
+{% endblock %}

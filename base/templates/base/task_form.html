@@ -1,0 +1,35 @@
+{% extends 'base/main.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content%}
+<div class="alert alert-success">
+<i class="fa fa-window-close text-danger"><a href="{% url 'tasks' %}">back to tasks</a></i>
+
+<h1 class="container">Task Form: </h1>
+</div>
+
+
+<form method="post" action="" class="uniForm">
+    {%csrf_token%}
+    <div class = "row justify-content-center">
+    <div class="col-auto">
+        <div class="form-group col-md-6 mb-2">
+            {{ form.title|as_crispy_field }}
+        </div>
+        
+        <div class="form-group col-md-6 mb-2">
+            {{ form.description|as_crispy_field }}
+        </div>
+
+        <div class="form-group col-md-6 mb-2">
+            {{ form.complete|as_crispy_field }}
+        </div>
+
+        <input type="submit" value="submit" class="alert alert-success">
+
+    </div>
+    </div>
+</form>
+
+{% endblock %}

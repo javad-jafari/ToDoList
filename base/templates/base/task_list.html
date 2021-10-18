@@ -1,0 +1,118 @@
+{% extends 'base/main.html' %}
+
+
+{% block css %}
+
+<style>
+</style>
+
+{% endblock %}
+
+
+
+{% block content%}
+
+
+<ul class="nav justify-content-end alert alert-success">
+
+
+{% if request.user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link active" href="#">{{request.user}}</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+    </li>
+
+{% else %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li>
+{% endif %}
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="">
+
+
+<div class="text-center">
+
+    <div>
+        <h1>My To Do List</h1>
+    </div>
+
+
+    <div>
+        <a href="{% url 'task-create' %}">Creat new task</a>
+    </div>
+
+</div>
+
+<div class="container col-2" dir='rtl'>
+<form method="get">
+    <div class="input-group mb-3 mt-5 ">
+    <input type="search" class="form-control" placeholder="Recipient's username" name="search-area" value="{{search_input}}" aria-describedby="button-addon2">
+    <button class="btn btn-outline-danger" type="submit" id="button-addon2">search</button>
+    </div>
+</form>
+</div>
+
+<div class = "row justify-content-center">
+    <div class="col-auto">
+    <table class="container table table-success table-striped" >
+    <tr>
+        <th>items</th>
+        <th>finished</th>
+        <th>..</th>
+        <th>...</th>
+
+    </tr>
+
+
+    {% for task in object_list %}
+    <tr>
+        <td><a href="{% url 'taskdetail' task.id %}">{{task.title}}</a></td>
+        {% if task.complete %}
+        <td><a href="{% url 'taskdetail' task.id %}"> <i class="fa fa-check text-success"></i></a></td>
+        {% else %}
+        <td><a href="{% url 'taskdetail' task.id %}"> <i class="fa fa-close text-danger"></i></a></td>
+        {% endif %}
+        <td><a href="{% url 'task-update' task.id %}"> edit</a></td>
+        <td><a href="{% url 'task-delete' task.id %}"> delete</a></td>
+
+
+
+    </tr>
+
+
+    {%empty%}
+        <h3> No Items</h3>
+    {% endfor %}
+
+
+
+</table>
+</div>
+</div>
+
+
+
+</div>
+
+
+{% endblock %}
